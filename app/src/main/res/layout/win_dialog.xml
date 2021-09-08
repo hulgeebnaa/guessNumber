@@ -25,7 +25,7 @@
                 app:srcCompat="@drawable/ic_close" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/voice1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="67dp"
@@ -36,27 +36,27 @@
                 android:textColor="@color/colorMain"
                 android:textSize="34sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/imageView2"
+                app:layout_constraintBottom_toTopOf="@+id/voice2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/voice2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="84dp"
                 android:layout_marginTop="17dp"
                 android:layout_marginEnd="84dp"
                 android:layout_marginBottom="14dp"
-                app:layout_constraintBottom_toTopOf="@+id/textView3"
+                app:layout_constraintBottom_toTopOf="@+id/voice3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/voice1"
                 app:srcCompat="@drawable/win" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/voice3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="28dp"
@@ -67,13 +67,13 @@
                 android:text="Та дээрх QR кодыг уншуулан шагналаа авна уу."
                 android:textColor="@color/colorMain"
                 android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/winButton"
+                app:layout_constraintBottom_toTopOf="@+id/voiceButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toBottomOf="@+id/voice2" />
 
             <Button
-                android:id="@+id/winButton"
+                android:id="@+id/voiceButton"
                 android:layout_width="177dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="89dp"
@@ -87,7 +87,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                app:layout_constraintTop_toBottomOf="@+id/voice3" />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.v7.widget.CardView>

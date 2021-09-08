@@ -1,17 +1,21 @@
 package it.anditalia.robot.hackathon.and_hackathon;
 
+import android.Manifest;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
+import android.os.Build;
+import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputFilter;
-import android.text.InputType;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -22,21 +26,23 @@ import android.widget.Toast;
 
 import com.qihancloud.opensdk.base.TopBaseActivity;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Random;
 
 public class MainActivity extends TopBaseActivity {
-    private static final int REQUEST_CODE_SPEECH_INPUT = 1000;
+    private static final int REQUEST_CODE_SPEECH_INPUT = 1;
+    private static final int RESULT_SPEECH = 1;
     Button start_btn, start_voice;
     TextView textView;
     Dialog dialog;
-    TextView attempText;
+    TextView attempText, amjilt;
     MediaPlayer high, low, won, ex;
     int secretNumber;
+    private SpeechRecognizer speechRecognizer;
     int attempt =7;
+    private static final int RecordAudioRequestCode =1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // this line is mandatory for the robot framework
@@ -47,6 +53,10 @@ public class MainActivity extends TopBaseActivity {
         try {
             this.getSupportActionBar().hide();
         }catch(NullPointerException e){}
+
+        if(ContextCompat.checkSelfPermission(this,Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED){
+            checkPermission();
+        }
         setContentView(R.layout.activity_main);
         start_btn = (Button) findViewById(R.id.start_btn);
         start_voice = (Button) findViewById(R.id.start_voice);
@@ -55,6 +65,7 @@ public class MainActivity extends TopBaseActivity {
         low= MediaPlayer.create(this, R.raw.low);
         won= MediaPlayer.create(this, R.raw.won);
         ex= MediaPlayer.create(this, R.raw.ex);
+        amjilt = (TextView) findViewById(R.id.amjilt);
         textView = (TextView) findViewById(R.id.textView);
         dialog = new Dialog(this);
         attempText = (TextView) findViewById(R.id.attemptText);
@@ -85,11 +96,18 @@ public class MainActivity extends TopBaseActivity {
 
     }
 
+    private void checkPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.RECORD_AUDIO},RecordAudioRequestCode);
+        }
+    }
+
     public int generateSecretNumber() {
         Random r = new Random();
         int secretNumber1 = r.nextInt(100) + 1;
         return secretNumber1;
     }
+
 
     private void inputDialog(int lolattempt) {
         dialog.setContentView(R.layout.input_dialog);
@@ -163,12 +181,15 @@ public class MainActivity extends TopBaseActivity {
         dialog.show();
     }
 
+
+
+
     private void openWinDialog() {
         dialog.setContentView(R.layout.win_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         won.start();
         ImageView imageViewClose = dialog.findViewById(R.id.imageViewClose2);
-        Button btnOk = dialog.findViewById(R.id.winButton);
+        Button btnOk = dialog.findViewById(R.id.voiceButton);
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
