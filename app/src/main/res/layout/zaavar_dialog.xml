@@ -15,7 +15,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageViewClose2"
+                android:id="@+id/imageViewCloseZaavar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -32,19 +32,19 @@
                 android:layout_marginTop="75dp"
                 android:layout_marginEnd="64dp"
                 android:layout_marginBottom="17dp"
-                android:text="БАЯР ХҮРГЭЕ"
+                android:text="ЗААВАР"
                 android:textColor="@color/colorMain"
                 android:textSize="34sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/QRcode"
+                app:layout_constraintBottom_toTopOf="@+id/zaavarImage"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/QRcode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/zaavarImage"
+                android:layout_width="664dp"
+                android:layout_height="243dp"
                 android:layout_marginStart="84dp"
                 android:layout_marginTop="17dp"
                 android:layout_marginEnd="84dp"
@@ -53,7 +53,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/zaavar1"
-                app:srcCompat="@drawable/win" />
+                app:srcCompat="@drawable/zaavar" />
 
             <TextView
                 android:id="@+id/voice3"
@@ -64,16 +64,16 @@
                 android:layout_marginEnd="27dp"
                 android:layout_marginBottom="33dp"
                 android:gravity="center"
-                android:text="Та дээрх QR кодыг Social Pay аппликейшнээр уншуулан шагналаа авна уу."
+                android:text="Таньд амжилт хүсье"
                 android:textColor="@color/colorMain"
                 android:textStyle="italic"
-                app:layout_constraintBottom_toTopOf="@+id/winButton"
+                app:layout_constraintBottom_toTopOf="@+id/zaavarButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/QRcode" />
+                app:layout_constraintTop_toBottomOf="@+id/zaavarImage" />
 
             <Button
-                android:id="@+id/winButton"
+                android:id="@+id/zaavarButton"
                 android:layout_width="177dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="89dp"
@@ -81,7 +81,7 @@
                 android:layout_marginEnd="84dp"
                 android:layout_marginBottom="40dp"
                 android:background="@drawable/rounded_button"
-                android:text="Шинээр эхлэх"
+                android:text="Эхлэх"
                 android:textColor="#FFF"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

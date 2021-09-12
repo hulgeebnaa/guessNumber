@@ -8,12 +8,10 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.MediaPlayer;
 import android.os.Build;
-import android.speech.RecognitionListener;
 import android.speech.RecognizerIntent;
 import android.speech.SpeechRecognizer;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.View;
@@ -32,11 +30,11 @@ import java.util.Random;
 
 public class MainActivity extends TopBaseActivity {
     private static final int REQUEST_CODE_SPEECH_INPUT = 1;
-    private static final int RESULT_SPEECH = 1;
-    Button start_btn, start_voice;
+    Button start_btn, start_voice,zaavar;
     TextView textView;
     Dialog dialog;
     TextView attempText, amjilt;
+    boolean isWin = false;
     MediaPlayer high, low, won, ex;
     int secretNumber;
     private SpeechRecognizer speechRecognizer;
@@ -65,35 +63,46 @@ public class MainActivity extends TopBaseActivity {
         low= MediaPlayer.create(this, R.raw.low);
         won= MediaPlayer.create(this, R.raw.won);
         ex= MediaPlayer.create(this, R.raw.ex);
-        amjilt = (TextView) findViewById(R.id.amjilt);
+        zaavar = (Button) findViewById(R.id.start_zaavar);
         textView = (TextView) findViewById(R.id.textView);
         dialog = new Dialog(this);
         attempText = (TextView) findViewById(R.id.attemptText);
         secretNumber = generateSecretNumber();
+        zaavar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                zaavarDialog();
+            }
+        });
         start_voice.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(!isWin){
                 if(attempt<=7&&attempt>=1){
                     voice();
                 }else if(attempt == 0){
                     openLoseDialog();
+                }
+                }else{
+                    openWinDialog();
                 }
             }
         }));
         start_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //voice();
-                if(attempt<=7&&attempt>=1){
-                    inputDialog(attempt);
-                }else if(attempt == 0){
-                    openLoseDialog();
+                if(!isWin){
+                    if(attempt<=7&&attempt>=1){
+                        inputDialog(attempt);
+                    }else if(attempt == 0){
+                        openLoseDialog();
+                    }
+                }
+                else{
+                    openWinDialog();
                 }
             }
         });
-
-
     }
 
     private void checkPermission() {
@@ -109,6 +118,27 @@ public class MainActivity extends TopBaseActivity {
     }
 
 
+    private void zaavarDialog(){
+            dialog.setContentView(R.layout.zaavar_dialog);
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        Button btnstart = dialog.findViewById(R.id.zaavarButton);
+        ImageView imageViewClose2 = dialog.findViewById(R.id.imageViewCloseZaavar);
+        btnstart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        imageViewClose2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+        dialog.show();
+    }
+
+
     private void inputDialog(int lolattempt) {
         dialog.setContentView(R.layout.input_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -116,6 +146,7 @@ public class MainActivity extends TopBaseActivity {
         TextView result2 = dialog.findViewById(R.id.result2);
         result2.setText(""+ secretNumber);
         inputAttemptText.setText("ТАНЬД НИЙТ "+ lolattempt + " БОЛОМЖ БАЙНА.");
+        final TextView inputResultext = dialog.findViewById(R.id.inputResultText);
         ImageView imageViewClose = dialog.findViewById(R.id.imageViewClose2);
         Button btnInsert = dialog.findViewById(R.id.inputButton);
         final EditText inputNumber = dialog.findViewById(R.id.inputNumber);
@@ -130,23 +161,34 @@ public class MainActivity extends TopBaseActivity {
                         openWinDialog();
                     }
                     else if(secretNumber > inputNumbo) {
-                        low.start();
-                        attempt--;
-                        attempText.setText("ТАНЬД НИЙТ "+ attempt + " БОЛОМЖ БАЙНА.");
-                        dialog.dismiss();
+                        if(attempt == 1){
+                            openLoseDialog();
+                        }
+                        else{
+                            low.start();
+                            inputResultext.setText("Taны тоо бага байна");
+                            attempt--;
+                            attempText.setText("ТАНЬД НИЙТ "+ attempt + " БОЛОМЖ БАЙНА.");
+                            inputDialog(attempt);
+                        }
                     }
                     else if(secretNumber < inputNumbo) {
-                        high.start();
-                        attempt--;
-                        attempText.setText("ТАНЬД НИЙТ "+ attempt + " БОЛОМЖ БАЙНА.");
-                        dialog.dismiss();
+                        if(attempt == 1){
+                            openLoseDialog();
+                        }
+                        else{
+                            high.start();
+                            inputResultext.setText("Taны тоо их байна");
+                            attempt--;
+                            attempText.setText("ТАНЬД НИЙТ "+ attempt + " БОЛОМЖ БАЙНА.");
+                            inputDialog(attempt);
+                        }
                     }else{
                         Toast.makeText(MainActivity.this, "Тоогоо оруулна уу",Toast.LENGTH_SHORT).show();
                     }
                 }catch (Exception e){
                     Toast.makeText(MainActivity.this, "Тоогоо оруулна уу",Toast.LENGTH_SHORT).show();
                 }
-
             }
         });
         imageViewClose.setOnClickListener(new View.OnClickListener() {
@@ -185,14 +227,16 @@ public class MainActivity extends TopBaseActivity {
 
 
     private void openWinDialog() {
+        isWin = true;
         dialog.setContentView(R.layout.win_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         won.start();
         ImageView imageViewClose = dialog.findViewById(R.id.imageViewClose2);
-        Button btnOk = dialog.findViewById(R.id.voiceButton);
+        Button btnOk = dialog.findViewById(R.id.winButton);
         btnOk.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                isWin = false;
                 dialog.dismiss();
                 won.stop();
                 MainActivity.this.recreate();
@@ -208,16 +252,13 @@ public class MainActivity extends TopBaseActivity {
         dialog.show();
     }
 
-
     private void voice() {
         Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
         intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
         intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "ТООГОО ХЭЛНЭ ҮҮ");
-
         try {
             startActivityForResult(intent, REQUEST_CODE_SPEECH_INPUT);
-
         }catch (Exception e){
             Toast.makeText(this, ""+e.getMessage(),Toast.LENGTH_SHORT).show();
         }
@@ -243,25 +284,34 @@ public class MainActivity extends TopBaseActivity {
             }
         }
     }
+
     public void bodoh(int inputNumbo){
-        if(secretNumber == inputNumbo) {
-            dialog.dismiss();
-            openWinDialog();
-        }
-        else if(secretNumber > inputNumbo) {
-            low.start();
-            attempt--;
-            attempText.setText("ТАНЬД НИЙТ "+ attempt + " БОЛОМЖ БАЙНА.");
-            dialog.dismiss();
-        }
-        else if(secretNumber < inputNumbo) {
-            high.start();
-            attempt--;
-            attempText.setText("ТАНЬД НИЙТ "+ attempt + " БОЛОМЖ БАЙНА.");
-            dialog.dismiss();
+        if(inputNumbo<100){
+            if(secretNumber == inputNumbo) {
+                dialog.dismiss();
+                openWinDialog();
+            }
+            else if(secretNumber > inputNumbo) {
+                low.start();
+                attempt--;
+                attempText.setText("ТАНЬД НИЙТ "+ attempt + " БОЛОМЖ БАЙНА.");
+                voice();
+                //dialog.dismiss();
+            }
+            else if(secretNumber < inputNumbo) {
+                high.start();
+                attempt--;
+                attempText.setText("ТАНЬД НИЙТ "+ attempt + " БОЛОМЖ БАЙНА.");
+                voice();
+                //dialog.dismiss();
+            }else{
+                Toast.makeText(MainActivity.this, "Тоогоо оруулна уу",Toast.LENGTH_SHORT).show();
+            }
         }else{
-            Toast.makeText(MainActivity.this, "Тоогоо оруулна уу",Toast.LENGTH_SHORT).show();
+            ex.start();
+            voice();
         }
+
     }
 
     @Override

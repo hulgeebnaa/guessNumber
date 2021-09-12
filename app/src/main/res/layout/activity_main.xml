@@ -9,13 +9,28 @@
     tools:context=".MainActivity">
 
 
+    <Button
+        android:id="@+id/start_zaavar"
+        android:layout_width="216dp"
+        android:layout_height="75dp"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_button"
+        android:text="Заавар"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.761" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:rotationX="4"
-        android:text="МИНИЙ САНАСАН ТООГ"
+        android:text="МИНИЙ САНАСАН ТООГ ТААХУУ"
         android:textColor="#FFFFFF"
         android:textSize="48sp"
         android:textStyle="bold"
@@ -43,50 +58,59 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.221" />
 
-    <TextView
-        android:id="@+id/amjilt"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:rotationX="4"
-        android:text="АМЖИЛТ ХҮСЬЕ"
-        android:textColor="#FFFFFF"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.85" />
-
     <Button
         android:id="@+id/start_btn"
         android:layout_width="472dp"
         android:layout_height="148dp"
         android:layout_gravity="center"
         android:background="@drawable/rounded_button"
-        android:text="ТААХ"
+        android:text="TEXT"
         android:textColor="#FFFFFF"
         android:textSize="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.028"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.646" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/start_voice"
-        android:layout_width="216dp"
-        android:layout_height="75dp"
+        android:layout_width="472dp"
+        android:layout_height="148dp"
         android:layout_gravity="center"
         android:background="@drawable/rounded_button"
-        android:text="voice"
+        android:text="VOICE"
         android:textColor="#FFFFFF"
-        android:textSize="24sp"
+        android:textSize="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.971"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="342dp"
+        android:layout_height="149dp"
+        android:cropToPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.819"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976" />
+        app:layout_constraintVertical_bias="0.99"
+        app:srcCompat="@drawable/chimege" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="378dp"
+        android:layout_height="90dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95"
+        app:srcCompat="@drawable/logo" />
+
 </android.support.constraint.ConstraintLayout>

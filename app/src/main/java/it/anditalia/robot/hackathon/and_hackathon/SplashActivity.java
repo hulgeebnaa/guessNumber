@@ -13,7 +13,7 @@ import com.qihancloud.opensdk.base.TopBaseActivity;
 
 public class SplashActivity extends TopBaseActivity {
 
-    ImageView logo;
+    ImageView logo,logo2;
     Animation logoanim;
     int index;
     long delay= 200;
@@ -32,9 +32,11 @@ public class SplashActivity extends TopBaseActivity {
         setContentView(R.layout.activity_splash);
 
         logo = (ImageView) findViewById(R.id.logo);
+        logo2 = (ImageView) findViewById(R.id.logo2);
         //animation
         logoanim = AnimationUtils.loadAnimation(this, R.anim.top_animation);
         logo.setAnimation(logoanim);
+        logo2.setAnimation(logoanim);
 
 
         //startActivity(new Intent(SplashActivity.this, MainActivity.class));

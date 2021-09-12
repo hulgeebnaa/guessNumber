@@ -20,12 +20,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_close" />
 
             <TextView
-                android:id="@+id/voice1"
+                android:id="@+id/zaavar1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="67dp"
@@ -36,16 +37,16 @@
                 android:textColor="@color/colorAccent"
                 android:textSize="34sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/voice2"
+                app:layout_constraintBottom_toTopOf="@+id/QRcode"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/voice2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/QRcode"
+                android:layout_width="643dp"
+                android:layout_height="267dp"
                 android:layout_marginStart="84dp"
                 android:layout_marginTop="17dp"
                 android:layout_marginEnd="84dp"
@@ -53,8 +54,8 @@
                 app:layout_constraintBottom_toTopOf="@+id/voice3"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/voice1"
-                app:srcCompat="@drawable/giphy" />
+                app:layout_constraintTop_toBottomOf="@+id/zaavar1"
+                app:srcCompat="@drawable/lost2" />
 
             <TextView
                 android:id="@+id/voice3"
@@ -71,7 +72,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/loseButton"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/voice2" />
+                app:layout_constraintTop_toBottomOf="@+id/QRcode" />
 
             <TextView
                 android:id="@+id/result"

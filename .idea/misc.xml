@@ -5,12 +5,13 @@
       <map>
         <entry key="..\:/Sanbot/Golomt-Sanbot-app/Sanbot-app/app/src/main/res/drawable/rounded_button.xml" value="0.5325814536340853" />
         <entry key="..\:/Sanbot/Golomt-Sanbot-app/Sanbot-app/app/src/main/res/drawable/rounded_button_lost.xml" value="0.5325814536340853" />
-        <entry key="..\:/Sanbot/Golomt-Sanbot-app/Sanbot-app/app/src/main/res/layout/activity_main.xml" value="0.5" />
-        <entry key="..\:/Sanbot/Golomt-Sanbot-app/Sanbot-app/app/src/main/res/layout/activity_splash.xml" value="0.2980952380952381" />
+        <entry key="..\:/Sanbot/Golomt-Sanbot-app/Sanbot-app/app/src/main/res/layout/activity_main.xml" value="0.33" />
+        <entry key="..\:/Sanbot/Golomt-Sanbot-app/Sanbot-app/app/src/main/res/layout/activity_splash.xml" value="0.33" />
         <entry key="..\:/Sanbot/Golomt-Sanbot-app/Sanbot-app/app/src/main/res/layout/input_dialog.xml" value="0.5701881331403763" />
         <entry key="..\:/Sanbot/Golomt-Sanbot-app/Sanbot-app/app/src/main/res/layout/lose_dialog.xml" value="0.67" />
         <entry key="..\:/Sanbot/Golomt-Sanbot-app/Sanbot-app/app/src/main/res/layout/voice_dialog.xml" value="0.72" />
         <entry key="..\:/Sanbot/Golomt-Sanbot-app/Sanbot-app/app/src/main/res/layout/win_dialog.xml" value="0.67" />
+        <entry key="..\:/Sanbot/Golomt-Sanbot-app/Sanbot-app/app/src/main/res/layout/zaavar_dialog.xml" value="0.5" />
       </map>
     </option>
   </component>
