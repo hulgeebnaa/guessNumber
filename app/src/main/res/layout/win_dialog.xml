@@ -28,32 +28,41 @@
                 android:id="@+id/zaavar1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="67dp"
-                android:layout_marginTop="75dp"
-                android:layout_marginEnd="64dp"
-                android:layout_marginBottom="17dp"
                 android:text="БАЯР ХҮРГЭЕ"
                 android:textColor="@color/colorMain"
                 android:textSize="34sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toTopOf="@+id/QRcode"
+                app:layout_constraintBottom_toTopOf="@+id/attemptWin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/QRcode"
+            <TextView
+                android:id="@+id/attemptWin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="84dp"
-                android:layout_marginTop="17dp"
-                android:layout_marginEnd="84dp"
-                android:layout_marginBottom="14dp"
-                app:layout_constraintBottom_toTopOf="@+id/voice3"
+                android:layout_marginBottom="12dp"
+                android:text="Та нэг дэхь оролдлогоороо тааж 4,999₮ хожлоо"
+                android:textAlignment="center"
+                android:textColor="@color/colorMain"
+                android:textSize="20sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@+id/QRcode"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <ImageView
+                android:id="@+id/QRcode"
+                android:layout_width="285dp"
+                android:layout_height="279dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/zaavar1"
-                app:srcCompat="@drawable/win" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/a4999" />
 
             <TextView
                 android:id="@+id/voice3"

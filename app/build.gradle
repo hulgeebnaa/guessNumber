@@ -4,11 +4,12 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "it.anditalia.robot.hackathon.and_hackathon"
-        minSdkVersion 23
+        minSdkVersion 21
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        //multiDexEnabled true
     }
     buildTypes {
         release {
@@ -22,6 +23,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
@@ -34,7 +36,8 @@ repositories {
     }
 }
 dependencies {
-
+    implementation 'com.github.adrielcafe:AndroidAudioConverter:0.0.8'
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation(name:'QihanOpenSdk_2.0.0', ext:'aar')
+    //implementation 'com.android.support:multidex:1.0.0'
 }
