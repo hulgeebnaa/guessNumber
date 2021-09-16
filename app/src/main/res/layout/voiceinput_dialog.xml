@@ -19,6 +19,9 @@
                 android:layout_width="283dp"
                 android:layout_height="65dp"
                 android:text="ХЭЛЭХ ТОВЧИЙГ ДАРЖ ТООГОО ХЭЛНЭ ҮҮ"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:foregroundGravity="center"
                 android:textColor="@color/colorMain"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -84,7 +87,7 @@
                 app:layout_constraintVertical_bias="0.283" />
 
             <TextView
-                android:id="@+id/inputAttemptText"
+                android:id="@+id/bolomj"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"

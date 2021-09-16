@@ -119,6 +119,8 @@
                 android:hint="0"
                 android:inputType="number"
                 android:textAlignment="center"
+                android:gravity="center"
+                android:foregroundGravity="center"
                 android:textColor="@color/colorMain"
                 android:textSize="96sp"
                 app:layout_constraintBottom_toTopOf="@+id/voice3"
