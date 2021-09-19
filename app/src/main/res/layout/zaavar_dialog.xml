@@ -54,7 +54,7 @@
                 app:layout_constraintHorizontal_bias="0.499"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/zaavar1"
-                app:srcCompat="@drawable/zaavar3" />
+                app:srcCompat="@drawable/zaavar" />
 
             <TextView
                 android:id="@+id/voice3"

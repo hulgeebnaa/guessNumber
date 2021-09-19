@@ -30,6 +30,7 @@ import android.text.InputFilter;
 import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -75,6 +76,7 @@ public class MainActivity extends TopBaseActivity {
     private boolean isMicRecording = false;
     Button start_btn, start_voice,zaavar;
     TextView textView;
+    String helsentoo = "1-100-н доторх тоог хүлээн авна.";
     Dialog dialog;
     inputStringToNumber inputStringToNumber;
     TextView attempText, amjilt;
@@ -185,9 +187,9 @@ public class MainActivity extends TopBaseActivity {
             @Override
             public void onClick(View view) {
                 zaavarDialog();
+                //zaavar.setText(secretNumber);
             }
         });
-
         File voiceDir = new File(root+"/Wav");
         if(!voiceDir.exists()&&!voiceDir.isDirectory()){
             if(voiceDir.mkdirs()){
@@ -206,7 +208,7 @@ public class MainActivity extends TopBaseActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            openVoiceInputDialog(attempt);
+                            openVoiceInputDialog(attempt,helsentoo);
                         }
                     });
                 }else if(attempt == 0){
@@ -314,10 +316,14 @@ public class MainActivity extends TopBaseActivity {
                             inputDialog(attempt);
                         }
                     }else{
-                        Toast.makeText(MainActivity.this, "Тоогоо оруулна уу",Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Тоогоо оруулна уу",Toast.LENGTH_SHORT).show();
+                        InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
                     }
                 }catch (Exception e){
-                    Toast.makeText(MainActivity.this, "Тоогоо оруулна уу",Toast.LENGTH_SHORT).show();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0);
+                    //Toast.makeText(MainActivity.this, "Тоогоо оруулна уу",Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -368,12 +374,12 @@ public class MainActivity extends TopBaseActivity {
         Button btnOk = dialog.findViewById(R.id.winButton);
         switch (attemptQR){
             case 7 : QRcode.setImageDrawable(getResources().getDrawable(R.drawable.a4999)); attemptWin.setText("Та нэг дэхь оролдлогоороо тааж 4,999₮ хожлоо"); break;
-            case 6 : QRcode.setImageDrawable(getResources().getDrawable(R.drawable.a4999)); attemptWin.setText("Та хоёр дахь оролдлогоороо тааж 4,999₮ хожлоо");break;
-            case 5 : QRcode.setImageDrawable(getResources().getDrawable(R.drawable.a3999)); attemptWin.setText("Та гурав дахь оролдлогоороо тааж 3,999₮ хожлоо");break;
-            case 4 : QRcode.setImageDrawable(getResources().getDrawable(R.drawable.a2999)); attemptWin.setText("Та дөрөв дахь оролдлогоороо тааж 2,999₮ хожлоо");break;
-            case 3 : QRcode.setImageDrawable(getResources().getDrawable(R.drawable.a1999)); attemptWin.setText("Та тав дахь оролдлогоороо тааж 1,999₮ хожлоо");break;
-            case 2 : QRcode.setImageDrawable(getResources().getDrawable(R.drawable.a499)); attemptWin.setText("Та зургаа дахь оролдлогоороо тааж 499₮ хожлоо");break;
-            default: QRcode.setImageDrawable(getResources().getDrawable(R.drawable.a499)); attemptWin.setText("Та сүүлийн оролдлогоороо тааж 499₮ хожлоо");
+            case 6 : QRcode.setImageDrawable(getResources().getDrawable(R.drawable.a3999)); attemptWin.setText("Та хоёр дахь оролдлогоороо тааж 3,999₮ хожлоо");break;
+            case 5 : QRcode.setImageDrawable(getResources().getDrawable(R.drawable.a2999)); attemptWin.setText("Та гурав дахь оролдлогоороо тааж 2,999₮ хожлоо");break;
+            case 4 : QRcode.setImageDrawable(getResources().getDrawable(R.drawable.a1999)); attemptWin.setText("Та дөрөв дахь оролдлогоороо тааж 1,999₮ хожлоо");break;
+            case 3 : QRcode.setImageDrawable(getResources().getDrawable(R.drawable.a499)); attemptWin.setText("Та тав дахь оролдлогоороо тааж 499₮ хожлоо");break;
+            case 2 : QRcode.setImageDrawable(getResources().getDrawable(R.drawable.a199)); attemptWin.setText("Та зургаа дахь оролдлогоороо тааж 199₮ хожлоо");break;
+            default: QRcode.setImageDrawable(getResources().getDrawable(R.drawable.a199)); attemptWin.setText("Та сүүлийн оролдлогоороо тааж 199₮ хожлоо");
         }
 
         btnOk.setOnClickListener(new View.OnClickListener() {
@@ -394,7 +400,7 @@ public class MainActivity extends TopBaseActivity {
         });
         dialog.show();
     }
-    private void openVoiceInputDialog(final int lolattempt){
+    private void openVoiceInputDialog(final int lolattempt,String helsentoo){
         dialog.setContentView(R.layout.voiceinput_dialog);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
@@ -402,10 +408,12 @@ public class MainActivity extends TopBaseActivity {
         ImageView imageViewClose = dialog.findViewById(R.id.imageViewClose2);
         final ImageView mic = dialog.findViewById(R.id.mic);
         final TextView bolomj = dialog.findViewById(R.id.bolomj);
+        final TextView voice3 = dialog.findViewById(R.id.voice3);
         final TextView inputStatus = dialog.findViewById(R.id.status);
         final TextView countdown = dialog.findViewById(R.id.countdown);
         final Button inputVoiceButton = dialog.findViewById(R.id.inputVoiceBtn);
         bolomj.setText("ТАНЬД НИЙТ "+ lolattempt + " БОЛОМЖ БАЙНА.");
+        voice3.setText(helsentoo);
         inputVoiceButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -417,7 +425,7 @@ public class MainActivity extends TopBaseActivity {
                         inputStatus.setText("СОНСОЖ БАЙНА...");
                         inputVoiceButton.setText("БИЧИЖ БАЙНА...");
                         countdown.setTextColor(Color.parseColor("#5271ff"));
-                        startVoiceThread(countdown,inputStatus, mic,inputVoiceButton);
+                        startVoiceThread(countdown,inputStatus, mic,inputVoiceButton,voice3);
                         mic.setImageDrawable(getResources().getDrawable(R.drawable.record_btn_recording));
                         isMicRecording = true;
                     }else{
@@ -449,7 +457,7 @@ public class MainActivity extends TopBaseActivity {
 //VOICE TO CHIMEGE SECTION START-----------------------------------------------
 
     //STEP1 THREAD-uudee uusgene
-    public void startVoiceThread(final TextView countdown, final TextView inputStatus, final ImageView mic, final Button inputVoiceButton) {
+    public void startVoiceThread(final TextView countdown, final TextView inputStatus, final ImageView mic, final Button inputVoiceButton, final TextView voice3) {
     isconverting = true;
     new Thread() {
         @Override
@@ -460,7 +468,7 @@ public class MainActivity extends TopBaseActivity {
     new Thread() {
         @Override
         public void run() {
-            stopRecording(inputStatus,countdown,mic,inputVoiceButton);
+            stopRecording(inputStatus,countdown,mic,inputVoiceButton,voice3);
         }
     }.start();
     new Thread() {
@@ -500,7 +508,7 @@ public class MainActivity extends TopBaseActivity {
         recorder.prepare();
         recorder.start();
     }
-    public void stopRecording(final TextView inputStatus, final TextView countdown, final ImageView mic,final Button inputVoiceButton){
+    public void stopRecording(final TextView inputStatus, final TextView countdown, final ImageView mic,final Button inputVoiceButton, final TextView voice3){
         new Timer().schedule(new TimerTask() {
             @Override
             public void run() {
@@ -583,7 +591,9 @@ public class MainActivity extends TopBaseActivity {
         assert response.body() != null;
         inputStringToNumber = new inputStringToNumber(response.body().string());
         bodoh(inputStringToNumber.number());
-        Log.i("TOOO : " , ""+ inputStringToNumber.getInput());
+        helsentoo = inputStringToNumber.getInput();
+        Log.i("HELSEN TOOO : " , ""+ inputStringToNumber.getInput());
+        Log.i("SANASAN TOOO : " , ""+ secretNumber);
     }
 
 
@@ -618,7 +628,7 @@ public class MainActivity extends TopBaseActivity {
                         @Override
                         public void run() {
                             attempText.setText("ТАНЬД НИЙТ "+ attempt + " БОЛОМЖ БАЙНА.");
-                            openVoiceInputDialog(attempt);
+                            openVoiceInputDialog(attempt, helsentoo);
                         }
                     });
                 }
@@ -639,7 +649,7 @@ public class MainActivity extends TopBaseActivity {
                         @Override
                         public void run() {
                             attempText.setText("ТАНЬД НИЙТ "+ attempt + " БОЛОМЖ БАЙНА.");
-                            openVoiceInputDialog(attempt);
+                            openVoiceInputDialog(attempt,helsentoo);
                         }
                     });
                 }
@@ -652,7 +662,7 @@ public class MainActivity extends TopBaseActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        openVoiceInputDialog(attempt);
+                        openVoiceInputDialog(attempt,helsentoo);
                     }
                 });
             }
