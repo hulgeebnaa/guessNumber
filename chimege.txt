@@ -48,4 +48,36 @@ QR кодыг дахин үүсгэж илгээлээ.
  4 оролдлого  - 1,999₮ 
  5 оролдлого  - 499₮ 
  6-7 оролдлого  – 199₮  
+ 
+ 
+ 
+ 
+ 
+     public static void main(String[] args) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String start = "2021-09-04";
+        String end = "2021-10-03";
+
+        LocalDate startDate = LocalDate.parse(start, dtf);
+        LocalDate endDate = LocalDate.parse(end, dtf);
+
+        if (startDate.isBefore(endDate) && dateNumber(startDate, LocalDate.now()) && (endDate.isEqual(LocalDate.now()) || endDate.isBefore(LocalDate.now()))) {
+            System.out.println("TRUE");
+        }else{
+            System.out.println("FALSE");
+        }
+    }
+
+    private static boolean dateNumber(LocalDate startDate, LocalDate endDate) {
+        YearMonth yearMonthObject = YearMonth.of(startDate.getYear(), startDate.getMonth());
+        long daysBetween = ChronoUnit.DAYS.between(startDate, endDate);
+        int daysInMonth = yearMonthObject.lengthOfMonth(); //28
+        System.out.println("daysBetween : "+  daysBetween + " daysInMonth :" + daysInMonth + "Localdate : " + LocalDate.now());
+        return daysBetween >= 1 && daysBetween <= daysInMonth;
+    }
+ 
+ 
+ 
+ 
+ 
 
